@@ -1,0 +1,17 @@
+amazon-linux-extras install ansible2 -y
+python --version
+yum install python2-pip -y
+yum install git
+pip install boto
+pip install boto3
+pip install botocore
+pip show boto
+
+
+aws configure
+
+AWS Access Key ID [None]: {add key id}
+AWS Secret Access Key [None]: {add access key}
+Default region name [None]: us-east-2
+Default output format [None]: json
+
