@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  vars: 
+    region: us-east-2
+    ami_id: ami-0d80c4e4338722fc6
+    keypair_name: ansible
+    instance_type: t2.micro
+    vpc_subnet_id: subnet-01860c459343298a2
+    assign_public_ip: yes
+    group_id: sg-0dbe511f5c841d8f4
+  
+  tasks:
+    - name: creating and launching ec2 instance
+      ec2:
+        instance_type: "{{ instance_type }}"
+        image: "{{ ami_id }}"     
+        vpc_subnet_id: "{{ vpc_subnet_id }}"
+        key_name: "{{ keypair_name }}"
+        assign_public_ip: "{{ assign_public_ip }}"
+        group_id: "{{ group_id }}"
+        count: 1
+        region: "{{ region }}"
+
