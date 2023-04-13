@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  tasks:
+  - name: creating ec2 ami using existing ec2 instance
+    ec2_ami:
+      instance_id: i-01b71e8984914f99e
+      region: us-east-2
+      no_reboot: true
+      name: ec2_ami
+      wait: yes
+    register: ami 

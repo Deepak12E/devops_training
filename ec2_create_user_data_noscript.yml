@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  vars:
+    user_data: |
+      #!/bin/bash
+      yum install git -y
+      amazon-linux-extras install ansible2 -y
+  tasks: 
+    - name: ec2 instance create using user data
+      ec2:
+        instance_type: t2.micro
+        image: ami-0b0f111b5dcb2800f
+        region: us-east-2
+        assign_public_ip: yes
+        group_id: sg-0015588285fc18929
+        key_name: ansible
+        vpc_subnet_id: subnet-0db31a9871a459e49
+        instance_tags:
+          Name: ec2 instance using user data
+        user_data: "{{ user_data }}"
+        count: 1
+        wait: yes
+      register: ec2_instance
